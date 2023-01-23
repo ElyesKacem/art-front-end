@@ -1,23 +1,68 @@
 import logo from './logo.svg';
+import header from './ah.jpg';
+import footer from './ahf.jpg';
 import './App.css';
+import TemporaryDrawer from './components/TemporaryDrawer';
+import { Container, Grid } from '@mui/material';
+import MediaCard from './components/card';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div>
+        <img src={header} />
+      <header>
+      <TemporaryDrawer/>
+        <Container>
+      <Grid Container >
+      <Grid container spacing={5}>
+  <Grid item xs={3}>
+    <MediaCard>1</MediaCard>
+  </Grid>
+  <Grid item xs={3}>
+    <MediaCard>2</MediaCard>
+  </Grid>
+  <Grid item xs={3}>
+    <MediaCard>3</MediaCard>
+  </Grid>
+  <Grid item xs={3}>
+    <MediaCard>4</MediaCard>
+  </Grid>
+  <Grid item xs={3}>
+    <MediaCard>1</MediaCard>
+  </Grid>
+  <Grid item xs={3}>
+    <MediaCard>2</MediaCard>
+  </Grid>
+  <Grid item xs={3}>
+    <MediaCard>3</MediaCard>
+  </Grid>
+  <Grid item xs={3}>
+    <MediaCard>4</MediaCard>
+  </Grid>
+  <Grid item xs={3}>
+    <MediaCard>1</MediaCard>
+  </Grid>
+  <Grid item xs={3}>
+    <MediaCard>2</MediaCard>
+  </Grid>
+  <Grid item xs={3}>
+    <MediaCard>3</MediaCard>
+  </Grid>
+  <Grid item xs={3}>
+    <MediaCard>4</MediaCard>
+  </Grid>
+</Grid>
+<br />
+<br />
+
+      </Grid>
+        </Container>
+       
       </header>
+      <div className="footer">
+      <img src={footer} />
+        
+      </div>
     </div>
   );
 }
