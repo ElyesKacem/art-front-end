@@ -7,6 +7,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import axios from 'axios';
 
 export default function StorageForm() {
 
@@ -26,8 +27,12 @@ export default function StorageForm() {
     const objToSave={
         location:location,
         locationRef:locationRef
-
     }
+    axios.post("http://localhost:3000/api/storages",objToSave,{
+      headers:{
+        "Content-Type": 'application/json'
+      }
+    })
     console.log(objToSave);
   };
 
