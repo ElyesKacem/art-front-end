@@ -13,6 +13,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import FileUpload from 'react-mui-fileuploader';
+import axios from 'axios';
 
 export default function FormDialog() {
 
@@ -37,20 +38,30 @@ export default function FormDialog() {
   };
 
   const handleSave = () => {
+    const formData = new FormData();
     const objToSave={
       title:title,
-      image:image,
       category:category,
       dimentions:dimentions,
       dimension3D:dimension3D,
       content:content,
       description:description,
       artistId:artistId
-
     }
+    const file = image[0];
+    
     console.log(objToSave);
     console.log("teeeeeeeeeeeeeeeeeeeeeeeeeeee");
-    console.log(image);
+    console.log(file);
+    formData.append("datata",JSON.stringify(objToSave));
+    formData.append("file",file)
+    console.log(formData.get("datata"));
+    console.log(formData.get("file"));
+    axios.post("http://localhost:3000/api/artworks",formData,{
+      headers:{
+        "Content-Type": 'multipart/form-data'
+      }
+    })
   };
 
 
