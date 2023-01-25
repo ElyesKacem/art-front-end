@@ -7,12 +7,14 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import axios from 'axios';
 
 export default function ArtistForm() {
 
   const [fullName, setFullName] = useState("");
   const [biography, setBiography] = useState("");
   const [birthday, setBirthday] = useState("");
+  const [birthplace, setBirthplace] = useState("");
   const [deathDate, setDeathDate] = useState("");
   const [deathPlace, setDeathPlace] = useState("");
 
@@ -28,11 +30,17 @@ export default function ArtistForm() {
     const objToSave={
         fullName:fullName,
         biography:biography,
-        birthday:birthday,
+        birthDate:birthday,
+        birthPlace:birthplace,
         deathDate:deathDate,
         deathPlace:deathPlace
 
     }
+    axios.post("http://localhost:3000/api/artists",objToSave,{
+      headers:{
+        "Content-Type": 'application/json'
+      }
+    })
     console.log(objToSave);
   };
 
@@ -89,7 +97,7 @@ export default function ArtistForm() {
             autoFocus
             margin="dense"
             id="Birthday"
-            label="Birthday"
+            label="Birth day"
             type="text"
             fullWidth
             variant="outlined"
@@ -97,6 +105,21 @@ export default function ArtistForm() {
             onChange={(e) => {
 
               setBirthday(e.target.value);
+
+            }
+            }
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            id="Birthplace"
+            label="Birth place"
+            type="text"
+            fullWidth
+            variant="outlined"
+            onChange={(e) => {
+
+              setBirthplace(e.target.value);
 
             }
             }
