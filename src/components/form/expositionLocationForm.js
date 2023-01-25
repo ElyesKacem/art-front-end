@@ -28,7 +28,7 @@ export default function ExpositionLocationForm() {
         exposition:exposition,
         expositionStartDate:expositionStartDate,
         expositionEndDate:expositionEndDate,
-        artWorkId:artWorkId
+        artWorkId:Number(artWorkId)
     }
     console.log(objToSave);
   };
@@ -75,7 +75,7 @@ export default function ExpositionLocationForm() {
             type="text"
             fullWidth
             variant="outlined"
-            placeholder='dd-mm-yyyy'
+            placeholder='yyyy-mm-dd'
             onChange={(e) => {
 
               setExpositionStartDate(e.target.value);
@@ -91,7 +91,7 @@ export default function ExpositionLocationForm() {
             type="text"
             fullWidth
             variant="outlined"
-            placeholder='dd-mm-yyyy'
+            placeholder='yyyy-mm-dd'
             onChange={(e) => {
 
               setexpositionEndDate(e.target.value);

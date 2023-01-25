@@ -25,8 +25,8 @@ const [storageId, setStorageId] = useState();
   const handleSave = () => {
     const objToSave={
         storageMode:storageMode,
-        artWorkId:artWorkId,
-        storageId:storageId
+        artWorkId:Number(artWorkId),
+        storageId:Number(storageId)
     }
     console.log(objToSave);
   };
@@ -40,7 +40,7 @@ const [storageId, setStorageId] = useState();
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen} style={{marginLeft:20}}>
-        Ajouter location oeuvre. 
+        Ajouter LO-OE 
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Ajouter la location de l'oeuvre. </DialogTitle>

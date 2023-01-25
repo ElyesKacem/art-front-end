@@ -47,8 +47,8 @@ export default function ArtWorkForm() {
       dimension3D:dimension3D,
       content:content,
       description:description,
-      creationDate:creationDate,
-      artistId:artistId
+      creation_date:creationDate,
+      artistId:Number(artistId)
     }
     const file = image[0];
     
@@ -79,7 +79,7 @@ export default function ArtWorkForm() {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen} style={{marginLeft:20}} color="error">
+      <Button variant="outlined" onClick={handleClickOpen} style={{marginLeft:20}} >
         Ajouter Oeuvre
       </Button>
       <Dialog open={open} onClose={handleClose}>
@@ -209,15 +209,14 @@ export default function ArtWorkForm() {
           <TextField
             autoFocus
             margin="dense"
-            id="Birthday"
-            label="Birthday"
-            type="text"
+            id="Artist ID"
+            label="Artist ID"
+            type="number"
             fullWidth
             variant="outlined"
-            placeholder='dd-mm-yyyy'
             onChange={(e) => {
 
-              setCreationDate(e.target.value);
+              setArtistId(e.target.value);
 
             }
             }
@@ -225,14 +224,15 @@ export default function ArtWorkForm() {
           <TextField
             autoFocus
             margin="dense"
-            id="Artist ID"
-            label="Artist ID"
+            id="creationDate"
+            label="Date de création"
             type="text"
             fullWidth
             variant="outlined"
+            placeholder='yyyy-mm-dd'
             onChange={(e) => {
 
-              setArtistId(e.target.value);
+              setCreationDate(e.target.value);
 
             }
             }

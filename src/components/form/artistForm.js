@@ -93,7 +93,7 @@ export default function ArtistForm() {
             type="text"
             fullWidth
             variant="outlined"
-            placeholder='dd-mm-yyyy'
+            placeholder='yyyy-mm-dd'
             onChange={(e) => {
 
               setBirthday(e.target.value);
@@ -124,7 +124,7 @@ export default function ArtistForm() {
             type="text"
             fullWidth
             variant="outlined"
-            placeholder='dd-mm-yyyy'
+            placeholder='yyyy-mm-dd'
             onChange={(e) => {
 
               setDeathDate(e.target.value);

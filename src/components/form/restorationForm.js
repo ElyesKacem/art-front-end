@@ -35,8 +35,8 @@ export default function RestorationForm() {
       report:report,
       type:type,
       description:description,
-      personnelId:personnelId,
-      artworkId:artworkId
+      personnelId:Number(personnelId),
+      artworkId:Number(artworkId)
 
     }
     console.log(objToSave);
@@ -67,7 +67,7 @@ export default function RestorationForm() {
             type="text"
             fullWidth
             variant="outlined"
-            placeholder='dd-mm-yyyyy'
+            placeholder='yyyy-mm-ddy'
             onChange={(e) => {
 
               setRestorationDate(e.target.value);

@@ -12,16 +12,13 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import ArtWorkForm from './form/oeuvreForm';
 import ArtistForm from './form/artistForm';
 import StorageForm from './form/storageForm';
 import ArtWorkLocationForm from './form/artworkLocationForm';
+import RestorationForm from './form/restorationForm';
+import PersonnelForm from './form/personnelForm';
+import ExpositionLocationForm from './form/expositionLocationForm';
 
 const drawerWidth = 240;
 
@@ -122,37 +119,24 @@ export default function PersistentDrawerLeft() {
         <Divider />
         <List>
           <br />
+        <ArtistForm />
+        <br />
+        <ArtWorkLocationForm />
+        <br />
+        <ExpositionLocationForm />
+        <br />
         <ArtWorkForm />
         <br />
-        <ArtistForm />
+        <PersonnelForm />
+        <br />
+        <RestorationForm />
         <br />
         <StorageForm />
         <br />
-        <ArtWorkLocationForm />
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+          
         </List>
         <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
+        
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
