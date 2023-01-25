@@ -42,10 +42,10 @@ export default function ExpositionLocationForm() {
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen} style={{marginLeft:20}}>
-        Ajouter Storage
+        Ajouter lo-expo
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Ajouter Storage</DialogTitle>
+        <DialogTitle>Ajouter location expo</DialogTitle>
         <DialogContent>
           <DialogContentText>
             Veuillez saisir tous les données du formulaires.
