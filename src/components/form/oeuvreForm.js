@@ -14,7 +14,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import FileUpload from 'react-mui-fileuploader';
 
-export default function FormDialog() {
+export default function ArtWorkForm() {
 
   const [title, setTitle] = useState("");
   const [image, setImage] = useState();
@@ -23,6 +23,7 @@ export default function FormDialog() {
   const [dimension3D, setDimension3D] = useState();
   const [content, setContent] = useState();
   const [description, setDescription] = useState();
+  const [creationDate, setCreationDate] = useState("");
   const [artistId, setArtistId] = useState();
 
   const [open, setOpen] = React.useState(false);
@@ -45,12 +46,10 @@ export default function FormDialog() {
       dimension3D:dimension3D,
       content:content,
       description:description,
+      creationDate:creationDate,
       artistId:artistId
 
     }
-    console.log(objToSave);
-    console.log("teeeeeeeeeeeeeeeeeeeeeeeeeeee");
-    console.log(image);
   };
 
 
@@ -66,14 +65,14 @@ export default function FormDialog() {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen} style={{marginLeft:20}}>
+      <Button variant="outlined" onClick={handleClickOpen} style={{marginLeft:20}} color="error">
         Ajouter Oeuvre
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Ajouter Oeuvre</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Veuillez saisirs tous les données du formulaires.
+            Veuillez saisir tous les données du formulaires.
           </DialogContentText>
           <TextField
             autoFocus
@@ -189,6 +188,22 @@ export default function FormDialog() {
             onChange={(e) => {
 
               setDescription(e.target.value);
+
+            }
+            }
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            id="Birthday"
+            label="Birthday"
+            type="text"
+            fullWidth
+            variant="outlined"
+            placeholder='dd-mm-yyyy'
+            onChange={(e) => {
+
+              setCreationDate(e.target.value);
 
             }
             }

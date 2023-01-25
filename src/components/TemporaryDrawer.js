@@ -18,7 +18,10 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-import FormDialog from './form/oeuvreForm';
+import ArtWorkForm from './form/oeuvreForm';
+import ArtistForm from './form/artistForm';
+import StorageForm from './form/storageForm';
+import ArtWorkLocationForm from './form/artworkLocationForm';
 
 const drawerWidth = 240;
 
@@ -118,7 +121,14 @@ export default function PersistentDrawerLeft() {
         </DrawerHeader>
         <Divider />
         <List>
-        <FormDialog />
+          <br />
+        <ArtWorkForm />
+        <br />
+        <ArtistForm />
+        <br />
+        <StorageForm />
+        <br />
+        <ArtWorkLocationForm />
           {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
