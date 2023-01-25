@@ -7,6 +7,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import axios from 'axios';
 
 export default function PersonnelForm() {
 
@@ -25,10 +26,15 @@ export default function PersonnelForm() {
   const handleSave = () => {
     const objToSave={
         fullName:fullName,
-        phoneNumber:phoneNumber,
+        phoneNumber:Number(phoneNumber),
         email:email
     }
     console.log(objToSave);
+    axios.post("http://localhost:3000/api/personnels", objToSave, {
+      headers: {
+        "Content-Type": 'application/json'
+      }
+    })
   };
 
 

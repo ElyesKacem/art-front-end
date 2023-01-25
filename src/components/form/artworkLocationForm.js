@@ -7,12 +7,13 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import axios from 'axios';
 
 export default function ArtWorkLocationForm() {
 
-const [storageMode, setStorageMode] = useState("");
-const [artWorkId, setArtWorkId] = useState();
-const [storageId, setStorageId] = useState();
+  const [storageMode, setStorageMode] = useState("");
+  const [artWorkId, setArtWorkId] = useState();
+  const [storageId, setStorageId] = useState();
 
 
   const [open, setOpen] = React.useState(false);
@@ -23,11 +24,16 @@ const [storageId, setStorageId] = useState();
   };
 
   const handleSave = () => {
-    const objToSave={
-        storageMode:storageMode,
-        artWorkId:Number(artWorkId),
-        storageId:Number(storageId)
+    const objToSave = {
+      storageMode: storageMode,
+      artworkId: Number(artWorkId),
+      storageId: Number(storageId)
     }
+    axios.post("http://localhost:3000/api/artworkLocations", objToSave, {
+      headers: {
+        "Content-Type": 'application/json'
+      }
+    })
     console.log(objToSave);
   };
 
@@ -39,8 +45,8 @@ const [storageId, setStorageId] = useState();
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen} style={{marginLeft:20}}>
-        Ajouter LO-OE 
+      <Button variant="outlined" onClick={handleClickOpen} style={{ marginLeft: 20 }}>
+        Ajouter LO-OE
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Ajouter la location de l'oeuvre. </DialogTitle>
@@ -48,7 +54,7 @@ const [storageId, setStorageId] = useState();
           <DialogContentText>
             Veuillez saisir tous les données du formulaires.
           </DialogContentText>
-          
+
 
           <TextField
             autoFocus
@@ -59,19 +65,16 @@ const [storageId, setStorageId] = useState();
             fullWidth
             variant="outlined"
             onChange={(e) => {
-
               setStorageMode(e.target.value);
-
             }
             }
           />
 
-
           <TextField
             autoFocus
             margin="dense"
-            id="Oeuvre"
-            label="Oeuvre"
+            id="OeuvreId"
+            label="Oeuvre Id"
             type="text"
             fullWidth
             variant="outlined"
@@ -82,7 +85,7 @@ const [storageId, setStorageId] = useState();
             }
             }
           />
-          
+
           <TextField
             autoFocus
             margin="dense"
@@ -100,8 +103,8 @@ const [storageId, setStorageId] = useState();
           />
 
 
-          
-          
+
+
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>

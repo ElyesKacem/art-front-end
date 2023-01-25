@@ -7,6 +7,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import axios from 'axios';
 
 export default function ExpositionLocationForm() {
 
@@ -26,11 +27,16 @@ export default function ExpositionLocationForm() {
   const handleSave = () => {
     const objToSave={
         exposition:exposition,
-        expositionStartDate:expositionStartDate,
-        expositionEndDate:expositionEndDate,
-        artWorkId:Number(artWorkId)
+        expositionStartDate:new Date(expositionStartDate),
+        expositionEndDate:new Date(expositionEndDate),
+        artworkId:Number(artWorkId)
     }
     console.log(objToSave);
+    axios.post("http://localhost:3000/api/expositionLocations", objToSave, {
+      headers: {
+        "Content-Type": 'application/json'
+      }
+    })
   };
 
 

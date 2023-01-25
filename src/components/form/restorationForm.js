@@ -7,6 +7,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import axios from 'axios';
 
 export default function RestorationForm() {
 
@@ -30,7 +31,7 @@ export default function RestorationForm() {
 
   const handleSave = () => {
     const objToSave={
-      restorationDate:restorationDate,
+      restorationDate:Date(restorationDate),
       restorationLocation:restorationLocation,
       report:report,
       type:type,
@@ -40,6 +41,11 @@ export default function RestorationForm() {
 
     }
     console.log(objToSave);
+    axios.post("http://localhost:3000/api/restorations", objToSave, {
+      headers: {
+        "Content-Type": 'application/json'
+      }
+    })
   };
 
 
