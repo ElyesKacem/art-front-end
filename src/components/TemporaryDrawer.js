@@ -19,6 +19,7 @@ import ArtWorkLocationForm from './form/artworkLocationForm';
 import RestorationForm from './form/restorationForm';
 import PersonnelForm from './form/personnelForm';
 import ExpositionLocationForm from './form/expositionLocationForm';
+import ArtInfos from './artInfos';
 
 const drawerWidth = 240;
 
@@ -140,6 +141,7 @@ export default function PersistentDrawerLeft() {
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
+        <ArtInfos />
         <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
