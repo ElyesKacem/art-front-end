@@ -43,8 +43,8 @@ export default function ArtWorkForm() {
     const objToSave={
       title:title,
       category:category,
-      dimentions:dimentions,
-      dimension3D:dimension3D,
+      dimensions:dimentions,
+      dimensions3d:dimension3D,
       content:content,
       description:description,
       creation_date:creationDate,
