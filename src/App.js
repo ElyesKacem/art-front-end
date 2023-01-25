@@ -7,6 +7,7 @@ import { Container, Grid } from '@mui/material';
 import MediaCard from './components/card';
 import axios from 'axios';
 import React from 'react';
+import Navbar from './components/navbar';
 
 function App() {
   const [artList, setArtList] = React.useState([]);
@@ -21,6 +22,7 @@ function App() {
 
   return (
     <div>
+      <Navbar />
       <img src={header} />
       <header>
         <TemporaryDrawer />
