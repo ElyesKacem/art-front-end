@@ -49,6 +49,8 @@ export default function FormDialog() {
 
     }
     console.log(objToSave);
+    console.log("teeeeeeeeeeeeeeeeeeeeeeeeeeee");
+    console.log(image);
   };
 
 
@@ -71,8 +73,7 @@ export default function FormDialog() {
         <DialogTitle>Ajouter Oeuvre</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To subscribe to this website, please enter your email address here. We
-            will send updates occasionally.
+            Veuillez saisirs tous les données du formulaires.
           </DialogContentText>
           <TextField
             autoFocus
