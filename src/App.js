@@ -24,8 +24,10 @@ function App() {
     <div>
       <Navbar />
       <img src={header} />
-      <header>
+      
         <TemporaryDrawer />
+        <br />
+        <br />
         <Container>
           <Grid Container >
             <Grid container spacing={5}>
@@ -43,7 +45,7 @@ function App() {
           </Grid>
         </Container>
 
-      </header>
+    
       <div className="footer">
         <img src={footer} />
 

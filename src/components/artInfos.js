@@ -9,6 +9,8 @@ import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
+import axios from 'axios';
+import ArtisteInfos from './artistInfo';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -20,8 +22,10 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 function BootstrapDialogTitle(props) {
+
+
+ 
   const { children, onClose, ...other } = props;
-  const [data, setData] = useState({})
   return (
     <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
       {children}
@@ -48,8 +52,27 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-export default function ArtInfos() {
+export default function ArtInfos(props) {
+
+  React.useEffect(() => {
+
+    axios.get("http://localhost:3000/api/artworks/"+props.id).then((response) => {
+      // console.log("inside axios", response.data);
+      // console.log("lololo");
+      setData(response.data);
+      console.log(response.data);
+      // console.log(props);
+      setShow(true);
+    });
+
+    
+  }, []);
+  
+
+
+  const [data, setData] = useState({})
   const [open, setOpen] = React.useState(false);
+  const [show, setShow] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -60,8 +83,9 @@ export default function ArtInfos() {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Open dialog
+      {show && <>
+        <Button size="small" variant="outlined" onClick={handleClickOpen}>
+        Voir plus
       </Button>
       <BootstrapDialog
         onClose={handleClose}
@@ -71,43 +95,130 @@ export default function ArtInfos() {
         // maxWidth={sm}
       >
         <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Modal title
+          {data.title}
         </BootstrapDialogTitle>
         <DialogContent dividers>
           <Typography gutterBottom>
-            <b>Image :</b>
+            <b>ID : </b> {data.id}
+          </Typography>
+          
+          <Typography gutterBottom>
+            <b>Catégorie :</b> {data.category}
           </Typography>
           <Typography gutterBottom>
-            <b>Catégorie :</b>
+            <b>Dimension : </b> {data.dimensions}
           </Typography>
           <Typography gutterBottom>
-            <b>Dimension : </b>
+            <b>Dimension 3D :</b> {data.dimensions3d}
           </Typography>
           <Typography gutterBottom>
-            <b>Dimension 3D :</b>
+            <b>Contenu :</b> {data.content}
           </Typography>
           <Typography gutterBottom>
-            <b>Contenu :</b>
+            <b>Description : </b> {data.description}
           </Typography>
           <Typography gutterBottom>
-            <b>Description :</b>
+            <b>Date de création : </b> {data.creation_date}
           </Typography>
           <Typography gutterBottom>
-            <b>Date de création : </b>
+            <b>Artiste : </b> {data.artist.fullName}
+          <ArtisteInfos id={data.artist.id} />
           </Typography>
-          <Typography gutterBottom>
-            <b>Artiste : </b>
-          </Typography>
-          voir plus sur l'artiste
           <br />
           <Typography gutterBottom>
-            <b>Lieu de l'arts : </b>
+            <b>Location de l'arts : </b>
+            <ul>
+             {!data.artworkLocation==[] && <li>Aucune informaion</li>}
+              {data.artworkLocation && <>{data.artworkLocation.map(element => {
+                return (
+                  <>
+                  <li>
+                    <b>storageMode : </b> {element.storageMode}                    
+                  </li>
+                  {element.storage!=[] && <>
+                    
+
+                    {element.storage.map(obj => {
+                return (
+                  <ul>
+                    <li><b>location : </b>{obj.location}</li>
+                    <li><b>locationRef : </b> {obj.locationRef}</li>
+                  </ul>
+                );
+              })}
+
+
+
+                    </>}
+                  </>
+                );
+              })}</>}
+            </ul>
           </Typography>
           <Typography gutterBottom>
-            <b>Location des exposition : </b>
+            <b>Lieux des exposition : </b>
+            <ul>
+             {!data.expositionLocation==[] && <li>Aucune informaion</li>}
+              {data.expositionLocation && <>{data.expositionLocation.map(element => {
+                return (
+                  <>
+                  <li>
+                    <b>exposition : </b> {element.exposition}                    
+                  </li>
+                  <li>
+                    <b>date début exposition : </b> {element.expositionStartDate}                    
+                  </li>
+                  <li>
+                    <b>date fin exposition : </b> {element.expositionEndDate}                    
+                  </li>
+                  </>
+                );
+              })}</>}
+            </ul>
           </Typography>
           <Typography gutterBottom>
             <b>Restorations : </b>
+            <ul>
+             {!data.restoration==[] && <li>Aucune informaion</li>}
+              {data.restoration && <>{data.restoration.map(element => {
+                return (
+                  <>
+                  <li>
+                    <b>restorationDate : </b> {element.restorationDate}                    
+                  </li>
+                  <li>
+                    <b>restorationLocation : </b> {element.restorationLocation}                    
+                  </li>
+                  <li>
+                    <b>report : </b> {element.report}                    
+                  </li>
+                  <li>
+                    <b>type : </b> {element.type}                    
+                  </li>
+                  <li>
+                    <b>description : </b> {element.description}                    
+                  </li>
+
+                  {element.personnel!=[] && <>
+                  
+                    {element.personnel.map(obj => {
+                return (
+                  <ul>
+                    <li><b>fullName : </b>{obj.fullName}</li>
+                    <li><b>phoneNumber : </b> {obj.phoneNumber}</li>
+                    <li><b>email : </b> {obj.email}</li>
+                  </ul>
+                );
+              })}
+                  
+                  </>}
+
+
+
+                  </>
+                );
+              })}</>}
+            </ul>
           </Typography>
         </DialogContent>
         <DialogActions>
@@ -116,6 +227,7 @@ export default function ArtInfos() {
           </Button>
         </DialogActions>
       </BootstrapDialog>
+      </>}
     </div>
   );
 }

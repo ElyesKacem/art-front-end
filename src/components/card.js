@@ -5,9 +5,11 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import ArtInfos from './artInfos';
+import ArtWorkUpdateForm from './form/oeuvreUpdateForm';
 
 export default function MediaCard({data}) {
-  console.log(data);
+  // console.log(data);
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -24,8 +26,8 @@ export default function MediaCard({data}) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+      <ArtWorkUpdateForm></ArtWorkUpdateForm>
+        <ArtInfos id={data.id} />
       </CardActions>
     </Card>
   );
