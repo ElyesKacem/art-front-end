@@ -16,12 +16,11 @@ import FileUpload from 'react-mui-fileuploader';
 import axios from 'axios';
 
 export default function ArtWorkUpdateForm({id,data}) {
-
   const [title, setTitle] = useState(data.title);
-  const [image, setImage] = useState();
+  // const [image, setImage] = useState();
   const [category, setCategory] = useState(data.category);
   const [dimensions, setDimensions] = useState(data.dimensions);
-  const [dimension3d, setDimension3d] = useState(data.dimension3d);
+  const [dimension3d, setDimension3d] = useState(data.dimensions3d);
   const [content, setContent] = useState(data.content);
   const [description, setDescription] = useState(data.description);
   const [creationDate, setCreationDate] = useState(data.creation_date.substr(0, 10));
@@ -31,7 +30,7 @@ export default function ArtWorkUpdateForm({id,data}) {
 
   const handleFilesChange = async (files) => {
     
-    setImage(files);
+    // setImage(files);
   }
 
   const handleClickOpen = () => {
@@ -39,7 +38,7 @@ export default function ArtWorkUpdateForm({id,data}) {
   };
 
   const handleSave = async() => {
-    const formData = new FormData();
+    
     const objToSave={
       title:title,
       category:category,
@@ -47,34 +46,20 @@ export default function ArtWorkUpdateForm({id,data}) {
       dimensions3d:dimension3d,
       content:content,
       description:description,
-      creation_date:creationDate,
+      creation_date:new Date(creationDate),
       artistId:Number(artistId)
     }
-    const file = image[0];
-    formData.append("datata",JSON.stringify(objToSave));
-    formData.append("file",file)
+   console.log("yoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo",objToSave);
+    
 
 
 
-    const response = await axios.patch("http://localhost:3000/api/artworks/"+id,formData,{
-      headers:{
-        "Content-Type": 'multipart/form-data'
-      }
-    })
+    const response = await axios.patch("http://localhost:3000/api/artworks/"+id,objToSave)
     .catch((error) => console.log('Error: ', error));
 if (response && response.data) {
     console.log(response);
     console.log(response.data);
 }
-
-
-
-    
-    axios.patch("http://localhost:3000/api/artworks/"+id,formData,{
-      headers:{
-        "Content-Type": 'multipart/form-data'
-      }
-    })
 
 
 
