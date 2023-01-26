@@ -34,7 +34,7 @@ export default function ArtWorkLocationForm() {
         "Content-Type": 'application/json'
       }
     })
-    console.log(objToSave);
+    window.location.reload(false);
   };
 
 

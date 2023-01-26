@@ -35,6 +35,7 @@ export default function PersonnelForm() {
         "Content-Type": 'application/json'
       }
     })
+    window.location.reload(false);
   };
 
 

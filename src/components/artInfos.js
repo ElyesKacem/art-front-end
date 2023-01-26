@@ -118,7 +118,7 @@ export default function ArtInfos(props) {
             <b>Description : </b> {data.description}
           </Typography>
           <Typography gutterBottom>
-            <b>Date de création : </b> {data.creation_date}
+            <b>Date de création : </b> {data.creation_date.substr(0, 10)}
           </Typography>
           <Typography gutterBottom>
             <b>Artiste : </b> {data.artist.fullName}
@@ -222,6 +222,23 @@ export default function ArtInfos(props) {
           </Typography>
         </DialogContent>
         <DialogActions>
+          <Button autoFocus onClick={async(e)=>{
+
+
+await axios.delete('http://localhost:3000/api/artworks/'+data.id)
+.then(() => {console.log("done")
+
+window.location.reload(false);
+}
+
+
+
+);
+
+
+          }} color='warning'>
+            Delete ART
+          </Button>
           <Button autoFocus onClick={handleClose}>
             Close
           </Button>

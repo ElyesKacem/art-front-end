@@ -15,17 +15,17 @@ import Select from '@mui/material/Select';
 import FileUpload from 'react-mui-fileuploader';
 import axios from 'axios';
 
-export default function ArtWorkUpdateForm() {
+export default function ArtWorkUpdateForm({id,data}) {
 
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState(data.title);
   const [image, setImage] = useState();
-  const [category, setCategory] = useState("Peinture");
-  const [dimentions, setDimentions] = useState();
-  const [dimension3D, setDimension3D] = useState();
-  const [content, setContent] = useState();
-  const [description, setDescription] = useState();
-  const [creationDate, setCreationDate] = useState("");
-  const [artistId, setArtistId] = useState();
+  const [category, setCategory] = useState(data.category);
+  const [dimensions, setDimensions] = useState(data.dimensions);
+  const [dimension3d, setDimension3d] = useState(data.dimension3d);
+  const [content, setContent] = useState(data.content);
+  const [description, setDescription] = useState(data.description);
+  const [creationDate, setCreationDate] = useState(data.creation_date.substr(0, 10));
+  const [artistId, setArtistId] = useState(data.artistId);
 
   const [open, setOpen] = React.useState(false);
 
@@ -38,32 +38,47 @@ export default function ArtWorkUpdateForm() {
     setOpen(true);
   };
 
-  const handleSave = () => {
+  const handleSave = async() => {
     const formData = new FormData();
     const objToSave={
       title:title,
       category:category,
-      dimensions:dimentions,
-      dimensions3d:dimension3D,
+      dimensions:dimensions,
+      dimensions3d:dimension3d,
       content:content,
       description:description,
       creation_date:creationDate,
       artistId:Number(artistId)
     }
     const file = image[0];
-    
-    console.log(objToSave);
-    console.log("teeeeeeeeeeeeeeeeeeeeeeeeeeee");
-    console.log(file);
     formData.append("datata",JSON.stringify(objToSave));
     formData.append("file",file)
-    console.log(formData.get("datata"));
-    console.log(formData.get("file"));
-    axios.post("http://localhost:3000/api/artworks",formData,{
+
+
+
+    const response = await axios.patch("http://localhost:3000/api/artworks/"+id,formData,{
       headers:{
         "Content-Type": 'multipart/form-data'
       }
     })
+    .catch((error) => console.log('Error: ', error));
+if (response && response.data) {
+    console.log(response);
+    console.log(response.data);
+}
+
+
+
+    
+    axios.patch("http://localhost:3000/api/artworks/"+id,formData,{
+      headers:{
+        "Content-Type": 'multipart/form-data'
+      }
+    })
+
+
+
+    window.location.reload(false);
   };
 
 
@@ -96,6 +111,7 @@ export default function ArtWorkUpdateForm() {
             type="text"
             fullWidth
             variant="outlined"
+            value={title}
             onChange={(e) => {
 
               setTitle(e.target.value);
@@ -154,9 +170,10 @@ export default function ArtWorkUpdateForm() {
             type="text"
             fullWidth
             variant="outlined"
+            value={dimensions}
             onChange={(e) => {
 
-              setDimentions(e.target.value);
+              setDimensions(e.target.value);
 
             }
             }
@@ -165,13 +182,14 @@ export default function ArtWorkUpdateForm() {
             autoFocus
             margin="dense"
             id="diemnsions3d"
+            value={dimension3d}
             label="diemnsions 3D"
             type="text"
             fullWidth
             variant="outlined"
             onChange={(e) => {
 
-              setDimension3D(e.target.value);
+              setDimension3d(e.target.value);
 
             }
             }
@@ -180,6 +198,7 @@ export default function ArtWorkUpdateForm() {
             autoFocus
             margin="dense"
             id="content"
+            value={content}
             label="content"
             type="text"
             fullWidth
@@ -195,6 +214,7 @@ export default function ArtWorkUpdateForm() {
             autoFocus
             margin="dense"
             id="Description"
+            value={description}
             label="Description"
             type="text"
             fullWidth
@@ -210,6 +230,7 @@ export default function ArtWorkUpdateForm() {
             autoFocus
             margin="dense"
             id="Artist ID"
+            value={artistId}
             label="Artist ID"
             type="number"
             fullWidth
@@ -225,6 +246,7 @@ export default function ArtWorkUpdateForm() {
             autoFocus
             margin="dense"
             id="creationDate"
+            value={creationDate}
             label="Date de création"
             type="text"
             fullWidth

@@ -46,6 +46,7 @@ export default function RestorationForm() {
         "Content-Type": 'application/json'
       }
     })
+    window.location.reload(false);
   };
 
 

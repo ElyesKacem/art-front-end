@@ -34,6 +34,7 @@ export default function StorageForm() {
       }
     })
     console.log(objToSave);
+    window.location.reload(false);
   };
 
 

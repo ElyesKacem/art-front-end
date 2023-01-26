@@ -64,6 +64,7 @@ export default function ArtWorkForm() {
         "Content-Type": 'multipart/form-data'
       }
     })
+    window.location.reload(false);
   };
 
 

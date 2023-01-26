@@ -26,7 +26,7 @@ export default function MediaCard({data}) {
         </Typography>
       </CardContent>
       <CardActions>
-      <ArtWorkUpdateForm></ArtWorkUpdateForm>
+      <ArtWorkUpdateForm id={data.id} data={data}></ArtWorkUpdateForm>
         <ArtInfos id={data.id} />
       </CardActions>
     </Card>

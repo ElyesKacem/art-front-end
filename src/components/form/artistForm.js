@@ -41,7 +41,7 @@ export default function ArtistForm() {
         "Content-Type": 'application/json'
       }
     })
-    console.log(objToSave);
+    window.location.reload(false);
   };
 
 
